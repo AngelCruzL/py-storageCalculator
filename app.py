@@ -4,10 +4,10 @@ from PyQt6 import QtWidgets, uic
 app = QtWidgets.QApplication([])
 
 # Load UI files
-login_screen = uic.loadUi("login.ui")
-close_screen = uic.loadUi("close.ui")
-data_screen = uic.loadUi("data.ui")
-results_screen = uic.loadUi("results.ui")
+login_screen = uic.loadUi("layout/login.ui")
+close_screen = uic.loadUi("layout/close.ui")
+data_screen = uic.loadUi("layout/data.ui")
+results_screen = uic.loadUi("layout/results.ui")
 
 # Executable
 login_screen.show()

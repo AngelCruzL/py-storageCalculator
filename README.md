@@ -65,3 +65,15 @@ This is a simple tool to calculate the storage requirements for a video conferen
    ```sh
    pip3 install -r requirements.txt
    ```
+   
+## Usage
+
+1. Run the application
+    
+   ```sh
+   python app.py
+   ```
+   
+2. Fill the form with the required data
+3. Click on the "Calcular" button
+4. The results will be displayed in the new window

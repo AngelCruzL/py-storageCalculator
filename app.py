@@ -19,13 +19,24 @@ attempts = 2
 
 def format_bytes(bytes):
     if bytes < 1024:
-        return f"{round(bytes, 3)} B"
+        return f"{bytes} Bytes"
     elif bytes < 1024 ** 2:
         return f"{round(bytes / 1024, 3)} KB"
     elif bytes < 1024 ** 3:
         return f"{round(bytes / 1024 ** 2, 3)} MB"
     else:
         return f"{round(bytes / 1024 ** 3, 3)} GB"
+
+
+def format_bits(bits):
+    if bits < 1000:
+        return f"{bits} bps"
+    elif bits < 1000 ** 2:
+        return f"{round(bits / 1000, 3)} Kbps"
+    elif bits < 1000 ** 3:
+        return f"{round(bits / 1000 ** 2, 3)} Mbps"
+    else:
+        return f"{round(bits / 1000 ** 3, 3)} Gbps"
 
 
 def calculate_audio_data(
@@ -85,25 +96,25 @@ def display_results(audio_data, video_data):
     compress_percentage = (total_storage_compressed / total_storage) * 100
 
     results_screen.audio_bw.setText(
-        f"El ancho de banda requerido\nes de: {audio_data[0]} bps")
+        f"El ancho de banda requerido\nes de: {format_bits(audio_data[0])}")
     results_screen.audio_storage_original.setText(
         f"El espacio de almacenamiento\nrequerido (sin compresión)\nes de: {format_bytes(audio_data[1])}")
     results_screen.audio_storage_compressed.setText(
         f"El espacio de almacenamiento\nrequerido (con compresión)\nes de: {format_bytes(audio_data[2])}")
 
     results_screen.video_bw.setText(
-        f"El ancho de banda requerido\nes de: {video_data[0]} bps")
+        f"El ancho de banda requerido\nes de: {format_bits(video_data[0])}")
     results_screen.video_storage_original.setText(
         f"El espacio de almacenamiento\nrequerido (sin compresión)\nes de: {format_bytes(video_data[1])}")
     results_screen.video_storage_compressed.setText(
         f"El espacio de almacenamiento\nrequerido (con compresión)\nes de: {format_bytes(video_data[2])}")
 
     results_screen.total_bw.setText(
-        f"El ancho de banda total\nrequerido es de: {total_bw} bps")
+        f"El ancho de banda total\nrequerido es de: {format_bits(total_bw)}")
     results_screen.total_storage_original.setText(
-        f"El espacio de almacenamiento\ntotal requerido (sin\ncompresión) es de: {format_bytes(total_storage)}")
+        f"El espacio de almacenamiento\ntotal requerido (sin compresión)\nes de: {format_bytes(total_storage)}")
     results_screen.total_storage_compressed.setText(
-        f"El espacio de almacenamiento\ntotal requerido (con\ncompresión) es de: {format_bytes(total_storage_compressed)}")
+        f"El espacio de almacenamiento\ntotal requerido (con compresión)\nes de: {format_bytes(total_storage_compressed)}")
     results_screen.result_label.setText(
         f"Se ahorro el {round(compress_percentage, 1)}% de espacio de almacenamiento al comprimir ({format_bytes(total_storage - total_storage_compressed)})")
 
